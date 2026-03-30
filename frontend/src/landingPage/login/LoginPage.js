@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const API = process.env.REACT_APP_API_URL;
 
 function Login() {
@@ -234,7 +235,7 @@ function Login() {
                                     {/* Sign Up Link */}
                                     <div className="text-center mt-4">
                                         <span className="text-white opacity-75">New to our community? </span>
-                                        <a href="/signup" className="text-white fw-semibold" style={{ 
+                                        <Link to="/signup" className="text-white fw-semibold" style={{ 
                                             textDecoration: "none",
                                             borderBottom: "2px solid rgba(255,255,255,0.5)",
                                             paddingBottom: "2px",
@@ -243,7 +244,7 @@ function Login() {
                                         onMouseEnter={(e) => e.target.style.borderBottomColor = "white"}
                                         onMouseLeave={(e) => e.target.style.borderBottomColor = "rgba(255,255,255,0.5)"}>
                                             Create account
-                                        </a>
+                                        </Link>
                                     </div>
                                 </form>
                             </div>
