@@ -136,6 +136,8 @@ function SignupPage() {
         } else {
             setErrors(newErrors);
         }
+        // add this anywhere
+        console.log("updated");
     };
 
     const inputStyle = {
