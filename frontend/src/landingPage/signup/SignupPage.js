@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_API_URL;
+
 function SignupPage() {
     const [formData, setFormData] = useState({
         fullName: "",
@@ -84,7 +86,7 @@ function SignupPage() {
             try {
 
                 const { data } = await axios.post(
-                    "http://localhost:8080/auth/signup",
+                    `${API}/auth/signup`,
                     {
                         fullName: formData.fullName,
                         email: formData.email,

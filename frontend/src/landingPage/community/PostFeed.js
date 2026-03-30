@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+const API = process.env.REACT_APP_API_URL;
+
+
 function PostFeed() {
 
   const currentUser = "You";
@@ -16,8 +19,7 @@ function PostFeed() {
 
       try {
 
-        const res = await fetch("http://localhost:8080/post/all");
-
+        const res = await fetch(`${API}/post/all`);
         const data = await res.json();
 
         const formatted = data.map(p => ({
@@ -54,14 +56,14 @@ function PostFeed() {
 
     try {
 
-      const res = await fetch("http://localhost:8080/post/add", {
+      const res = await fetch(`${API}/post/add`, {
 
         method: "POST",
 
         headers: {
           "Content-Type": "application/json"
         },
-
+        credentials: "include",
         body: JSON.stringify({
           author,
           content
@@ -99,8 +101,11 @@ function PostFeed() {
   const handleLike = async (id) => {
 
     const res = await fetch(
-      `http://localhost:8080/post/like/${id}`,
-      { method: "PUT" }
+      `${API}/post/like/${id}`,
+      {
+        method: "PUT",
+        credentials: "include"
+      }
     );
 
     const updated = await res.json();
@@ -133,12 +138,13 @@ function PostFeed() {
     if (!commentText[id]?.trim()) return;
 
     const res = await fetch(
-      `http://localhost:8080/post/comment/${id}`,
+      `${API}/post/comment/${id}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({
           text: commentText[id]
         })

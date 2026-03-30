@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const API = process.env.REACT_APP_API_URL;
 
 function Assessment() {
   const [answers, setAnswers] = useState({});
@@ -167,7 +168,7 @@ function Assessment() {
 
     try {
 
-      await axios.post("http://localhost:8080/assesment/save", {
+      await axios.post(`${API}/assesment/save`, {
         userId: localStorage.getItem("userId"),
         answers: answers,
         totalScore: totalScore,
