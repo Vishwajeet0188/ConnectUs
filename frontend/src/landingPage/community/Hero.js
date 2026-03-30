@@ -6,7 +6,7 @@ function Hero() {
       <div className="card bg-dark text-white overflow-hidden">
 
         <img 
-          src="images/community.jpg" 
+          src="Images/community.jpg" 
           className="card-img hero-blur-img"
           style={{ height: "250px", objectFit: "cover" }}
           alt="Community"
