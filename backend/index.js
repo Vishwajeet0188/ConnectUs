@@ -28,10 +28,10 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "http://localhost:3000", 
-      "https://projectstructure-d1q2c44ax4xcwy.amplifyapp.com"
-    ],
-    credentials: true,
+    "http://localhost:3000",
+    "https://projectstructure.d1q2c44ax4xcwy.amplifyapp.com"
+  ],
+  credentials: true,
   })
 );
 
