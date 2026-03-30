@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -46,8 +47,9 @@ function Login() {
             if (Object.keys(newErrors).length === 0) {
                 setIsLoading(true);
                 try {
+                    
                     const { data } = await axios.post(
-                        "http://localhost:8080/auth/login",
+                        `${API}/auth/login`,
                         {
                             email: formData.email,
                             password: formData.password
