@@ -18,7 +18,7 @@ function Team(){
                 {/* 👇 Uncomment this when you add real image */}
                 
                 <img 
-                    src="/images/VishwajeetImg.jpeg" 
+                    src="/Images/VishwajeetImg.jpeg"
                     alt="Vishwajeet Singh" 
                     className="team-img"
                 />
@@ -60,7 +60,7 @@ function Team(){
                 {/* <div className="avatar">👨‍🎓</div> */}
 
                  <img 
-                    src="/images/AnujitPhoto.jpeg" 
+                    src="/Images/AnujitPhoto.jpeg" 
                     alt="Anujit" 
                     className="team-img"
                 />
@@ -71,13 +71,13 @@ function Team(){
 
                   <div className="team-card">
 
-                {
+                
                 <img 
-                    src="/images/SandeepImage.jpeg" 
+                    src="/Images/SandeepImage.jpeg" 
                     alt="Sandeep" 
                     className="team-img"
                 />
-                }
+                
 
                 {/* <div className="avatar">👨‍🎓</div> */}
 

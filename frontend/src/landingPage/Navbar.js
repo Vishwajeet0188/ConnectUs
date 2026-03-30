@@ -31,8 +31,8 @@ function Navbar() {
 
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img
-            src="Images/logo1.png"
-            alt="MindWell"
+            src="/Images/logo1.png"
+            alt="ConnectUS"
             style={{ width: "15%", marginRight: "10px" }}
           />
         </Link>
