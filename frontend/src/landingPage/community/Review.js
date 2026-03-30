@@ -60,44 +60,56 @@ function Review() {
 
   // Submit review
   const handleReviewSubmit = async (e) => {
-    e.preventDefault();
-    if (newReview.comment.trim()) {
-      try {
-        await fetch(`${API}/review/add`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          credentials: "include",  
-          body: JSON.stringify({
-            userId: localStorage.getItem("userId"),
-            userName: newReview.name || "Anonymous",
-            reviewText: newReview.comment,
-            rating: newReview.rating
-          })
-        });
+  e.preventDefault();
 
-        const review = {
-          id: Date.now(),
-          name: newReview.name || "Anonymous",
-          rating: newReview.rating,
-          comment: newReview.comment,
-          role: "Community Member"
-        };
+  if (newReview.comment.trim()) {
+    try {
+      const res = await fetch(`${API}/review/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          userId: localStorage.getItem("userId"),
+          userName: newReview.name || "Anonymous",
+          reviewText: newReview.comment,
+          rating: newReview.rating
+        })
+      });
 
-        setReviews([review, ...reviews]);
-        setNewReview({
-          rating: 5,
-          comment: "",
-          name: ""
-        });
-        setShowReviewForm(false);
-        setHoveredRating(0);
-      } catch (error) {
-        console.log("Error saving review:", error);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to save review");
       }
+
+      console.log("Saved in DB:", data);
+
+      const review = {
+        id: data._id || Date.now(),
+        name: newReview.name || "Anonymous",
+        rating: newReview.rating,
+        comment: newReview.comment,
+        role: "Community Member"
+      };
+
+      setReviews([review, ...reviews]);
+
+      setNewReview({
+        rating: 5,
+        comment: "",
+        name: ""
+      });
+
+      setShowReviewForm(false);
+
+    } catch (error) {
+      console.log("Error saving review:", error);
+      alert("Review not saved!");
     }
-  };
+  }
+};
 
   // Star rating component
   const StarRating = ({ rating, onRatingChange, interactive = false }) => {
