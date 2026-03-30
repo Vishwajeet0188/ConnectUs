@@ -18,14 +18,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000", 
+      "https://projectstructure-d1q2c44ax4xcwy.amplifyapp.com"
+    ],
     credentials: true,
   })
 );
 
 // Routes: 
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
 
 app.use("/auth", AuthRoute);
 app.use("/assesment",AssesmentRoute);
@@ -47,6 +60,12 @@ mongoose.connect(url, {
 
 // Server 
 
-app.listen(8080, () => {
-    console.log("🚀 Server Started on port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server Started on port ${PORT}`);
 });
+
+// app.listen(8080, () => {
+//     console.log("🚀 Server Started on port 8080");
+// });
