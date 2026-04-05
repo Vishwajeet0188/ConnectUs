@@ -1,6 +1,7 @@
 // AdminDashboard.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -34,7 +35,7 @@ const AdminDashboard = () => {
         console.warn("No token found, trying anyway...");
         }
 
-      const response = await axios.get("http://localhost:8080/admin/users", {
+      const response = await axios.get(`${API}/admin/users`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -69,7 +70,7 @@ const AdminDashboard = () => {
           setError(err.response.data?.message || "Failed to fetch users");
         }
       } else if (err.request) {
-        setError("Cannot connect to server. Please check if backend is running on http://localhost:8080");
+        setError(`Cannot connect to server. Please check if backend is running at ${API}`);
       } else {
         setError(`Error: ${err.message}`);
       }
@@ -107,8 +108,8 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem("token");
       
-      const response = await axios.post(
-        "http://localhost:8080/admin/users",
+        const response = await axios.post(
+        `${API}/admin/users`,
         {
           fullName: newUser.fullName,
           email: newUser.email,
@@ -148,7 +149,7 @@ const AdminDashboard = () => {
       const token = localStorage.getItem("token");
       
       const response = await axios.put(
-        `http://localhost:8080/admin/users/${selectedUser._id}`,
+          `${API}/admin/users/${selectedUser._id}`,
         {
           fullName: selectedUser.fullName,
           email: selectedUser.email,
@@ -184,7 +185,7 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:8080/admin/users/${id}`, {
+      await axios.delete(`${API}/admin/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -207,7 +208,7 @@ const AdminDashboard = () => {
       const token = localStorage.getItem("token");
       
       await axios.patch(
-        `http://localhost:8080/admin/users/${user._id}/status`,
+         `${API}/admin/users/${user._id}/status`,
         { status: newStatus },
         {
           headers: {
