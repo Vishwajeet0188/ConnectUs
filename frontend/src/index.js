@@ -26,7 +26,7 @@
   import Dashboard from './landingPage/dashboard/Dashboard';
   import { AuthProvider } from "../src/context/AuthContext";
   import AdminDashboard from './landingPage/admin/AdminDashboard';
-
+  import NotFound from "./pages/NotFound";
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
