@@ -25,7 +25,7 @@ module.exports.Signup = async (req, res) => {
     });
 
     // create JWT token
-    const token = createSecretToken(user._id);
+    const token = createSecretToken(user);
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -72,7 +72,7 @@ module.exports.Login = async (req, res) => {
     }
 
     // 🔥 create token
-    const token = createSecretToken(user._id);
+    const token = createSecretToken(user);
 
     // optional cookie (can keep)
     res.cookie("token", token, {
