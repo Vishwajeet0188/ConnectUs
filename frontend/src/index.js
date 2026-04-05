@@ -55,6 +55,7 @@
         <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/admin/dashboard' element={<AdminDashboard/>} />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>
