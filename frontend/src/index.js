@@ -26,7 +26,7 @@
   import Dashboard from './landingPage/dashboard/Dashboard';
   import { AuthProvider } from "../src/context/AuthContext";
   import AdminDashboard from './landingPage/admin/AdminDashboard';
-  import NotFound from "./pages/NotFound";
+ 
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
@@ -55,7 +55,7 @@
         <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/admin/dashboard' element={<AdminDashboard/>} />
-        <Route path='*' element={<NotFound/>} />
+        <Route path="*" element={<h1 style={{textAlign:"center"}}>404 - Page Not Found</h1>} />
       </Routes>
       <Footer/>
     </BrowserRouter>
