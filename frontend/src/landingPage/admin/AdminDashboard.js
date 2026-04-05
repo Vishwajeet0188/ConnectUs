@@ -292,7 +292,7 @@ const AdminDashboard = () => {
           <div style={styles.headerRight}>
             <div style={styles.adminInfo}>
               <span style={styles.adminBadge}>Admin Panel</span>
-              <span style={styles.adminEmail}>admin@example.com</span>
+              {/* <span style={styles.adminEmail}>admin@example.com</span> */}
             </div>
             <button
               style={styles.logoutBtn}
@@ -480,58 +480,74 @@ const AdminDashboard = () => {
       </main>
 
       {/* Add User Modal */}
+   
       {showAddModal && (
         <div style={styles.modalOverlay} onClick={() => setShowAddModal(false)}>
           <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
             <div style={styles.modalHeader}>
               <h2 style={styles.modalTitle}>Add New User</h2>
-              <button style={styles.modalClose} onClick={() => setShowAddModal(false)}>✕</button>
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Full Name *</label>
-              <input
-                type="text"
-                value={newUser.fullName}
-                onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
-                placeholder="Enter full name"
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Email *</label>
-              <input
-                type="email"
-                value={newUser.email}
-                onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                placeholder="Enter email address"
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Password *</label>
-              <input
-                type="password"
-                value={newUser.password}
-                onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                placeholder="Enter password"
-                style={styles.input}
-              />
-            </div>
-            <div style={styles.formGroup}>
-              <label style={styles.label}>Role</label>
-              <select
-                value={newUser.role}
-                onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-                style={styles.select}
+              <button 
+                style={styles.modalClose} 
+                onClick={() => setShowAddModal(false)}
               >
-                <option value="student">Student</option>
-                <option value="parent">Parent</option>
-                <option value="professional">Professional</option>
-                <option value="admin">Admin</option>
-              </select>
+                ✕
+              </button>
             </div>
+            
+            <div style={styles.modalBody}>
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Full Name *</label>
+                <input
+                  type="text"
+                  value={newUser.fullName}
+                  onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
+                  placeholder="Enter full name"
+                  style={styles.input}
+                />
+              </div>
+              
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Email *</label>
+                <input
+                  type="email"
+                  value={newUser.email}
+                  onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                  placeholder="Enter email address"
+                  style={styles.input}
+                />
+              </div>
+              
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Password *</label>
+                <input
+                  type="password"
+                  value={newUser.password}
+                  onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                  placeholder="Enter password"
+                  style={styles.input}
+                />
+              </div>
+              
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Role</label>
+                <select
+                  value={newUser.role}
+                  onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+                  style={styles.select}
+                >
+                  <option value="student">Student</option>
+                  <option value="parent">Parent</option>
+                  <option value="professional">Professional</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            </div>
+            
             <div style={styles.modalActions}>
-              <button style={styles.btnSecondary} onClick={() => setShowAddModal(false)}>
+              <button 
+                style={styles.btnSecondary} 
+                onClick={() => setShowAddModal(false)}
+              >
                 Cancel
               </button>
               <button style={styles.btnPrimary} onClick={addUser}>
@@ -792,6 +808,46 @@ const styles = {
     color: '#718096',
     margin: 0,
   },
+  // Add after your existing styles
+
+modalBody: {
+  padding: '0',
+  maxHeight: 'calc(90vh - 120px)',
+  overflowY: 'auto',
+},
+
+modalHeader: {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: '24px 28px',
+  borderBottom: '1px solid #e2e8f0',
+  backgroundColor: '#f8fafc',
+  borderTopLeftRadius: '20px',
+  borderTopRightRadius: '20px',
+},
+
+modalTitle: {
+  fontSize: '22px',
+  fontWeight: '700',
+  color: '#1a1a2e',
+  margin: 0,
+},
+
+modalClose: {
+  background: 'none',
+  border: 'none',
+  fontSize: '24px',
+  cursor: 'pointer',
+  color: '#a0aec0',
+  padding: '4px 8px',
+  borderRadius: '8px',
+  transition: 'all 0.3s ease',
+  ':hover': {
+    backgroundColor: '#f1f5f9',
+    color: '#ef4444',
+  },
+},
   
   // Buttons
   btnPrimary: {
