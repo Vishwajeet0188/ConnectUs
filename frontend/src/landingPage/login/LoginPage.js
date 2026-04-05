@@ -45,45 +45,71 @@ function Login() {
 
         const handleSubmit = async (e) => {
             e.preventDefault();
+
             const newErrors = validateForm();
-            if (Object.keys(newErrors).length === 0) {
-                setIsLoading(true);
-                try {
-                    
-                    const { data } = await axios.post(
-                        `${API}/auth/login`,
-                        {
-                            email: formData.email,
-                            password: formData.password
-                        },
-                        {
-                            withCredentials: true
-                        }
-                    );
-                    if (data.success) {
-
-                        localStorage.setItem("isLoggedIn", "true");
-                        localStorage.setItem("userName", data.user.fullName);
-                        localStorage.setItem("userId", data.user._id); 
-                        console.log("Stored User ID:", data.user._id);
-                        localStorage.setItem("token", data.token);
-                        localStorage.setItem("user", JSON.stringify(data.user));
-                         
-                        alert("Login successful!");
-
-                        if (data.user.role === "admin") {
-                            window.location.href = "/admin/dashboard";
-                        } else {
-                            window.location.href = "/dashboard";
-                        }
-                    }
-                } catch (error) {
-                    alert(error.response?.data?.message || "Login failed");
-                } finally {
-                    setIsLoading(false);
-                }
-            } else {
+            if (Object.keys(newErrors).length !== 0) {
                 setErrors(newErrors);
+                return;
+            }
+
+            setIsLoading(true);
+
+            try {
+                const { data } = await axios.post(
+                `${API}/auth/login`,
+                {
+                    email: formData.email,
+                    password: formData.password,
+                },
+                {
+                    withCredentials: true,
+                }
+                );
+
+                console.log("LOGIN RESPONSE:", data);
+
+                // Validate response safely
+                if (!data || !data.token || !data.user) {
+                throw new Error("Invalid login response from server");
+                }
+
+                //  Store data
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("userId", data.user._id);
+                localStorage.setItem("userName", data.user.fullName);
+
+                alert("Login successful!");
+
+                //  Role-based redirect
+                switch (data.user.role) {
+                case "admin":
+                    window.location.href = "/admin/dashboard";
+                    break;
+
+                case "student":
+                case "parent":
+                case "professional":
+                    window.location.href = "/dashboard";
+                    break;
+
+                default:
+                    // fallback (important)
+                    window.location.href = "/";
+                }
+
+            } catch (error) {
+                console.error("Login error:", error);
+
+                if (error.response) {
+                alert(error.response.data?.message || "Login failed");
+                } else {
+                alert(error.message || "Server error");
+                }
+
+            } finally {
+                setIsLoading(false);
             }
         };
 
