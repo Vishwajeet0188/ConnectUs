@@ -91,7 +91,7 @@ function SignupPage() {
                         fullName: formData.fullName,
                         email: formData.email,
                         password: formData.password,
-                        role: formData.role
+                        // role: formData.role
                     },
                     {
                         withCredentials: true
@@ -112,7 +112,7 @@ function SignupPage() {
                         email: "",
                         password: "",
                         confirmPassword: "",
-                        role: "student",
+                        // role: "student",
                         agreeTerms: false
                     });
 
