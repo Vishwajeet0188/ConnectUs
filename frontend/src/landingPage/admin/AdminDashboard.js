@@ -256,7 +256,7 @@ const AdminDashboard = () => {
   return (
     <div style={styles.dashboardContainer}>
       {/* Sidebar */}
-      <aside style={styles.sidebar}>
+      {/* <aside style={styles.sidebar}>
         <div style={styles.logo}>
           <div style={styles.logoIcon}>📊</div>
           <h2 style={styles.logoText}>AdminHub</h2>
@@ -279,7 +279,7 @@ const AdminDashboard = () => {
             <span>Settings</span>
           </a>
         </nav>
-      </aside>
+      </aside> */}
 
       {/* Main Content */}
       <main style={styles.mainContent}>
@@ -659,7 +659,7 @@ const styles = {
   // Main Content
   mainContent: {
     flex: 1,
-    marginLeft: '280px',
+    marginLeft: 0,
     padding: '24px',
   },
   
