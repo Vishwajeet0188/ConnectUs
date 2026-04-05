@@ -50,14 +50,11 @@ module.exports.Signup = async (req, res) => {
 };
 
 
-// LOGIN
-
 module.exports.Login = async (req, res) => {
   try {
 
     const { email, password } = req.body;
 
-    // check if user exists
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -66,7 +63,6 @@ module.exports.Login = async (req, res) => {
       });
     }
 
-    // compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -75,9 +71,10 @@ module.exports.Login = async (req, res) => {
       });
     }
 
-    // create token
+    // 🔥 create token
     const token = createSecretToken(user._id);
 
+    // optional cookie (can keep)
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
@@ -86,9 +83,9 @@ module.exports.Login = async (req, res) => {
 
     const { password: _, ...safeUser } = user._doc;
 
+    // 🔥 IMPORTANT: send token in response
     res.status(200).json({
-      message: "Login successful",
-      success: true,
+      token,   // ADD THIS FOR TOKEN.
       user: safeUser
     });
 
