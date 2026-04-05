@@ -65,11 +65,17 @@ function Login() {
                         localStorage.setItem("isLoggedIn", "true");
                         localStorage.setItem("userName", data.user.fullName);
                         localStorage.setItem("userId", data.user._id); 
-                         console.log("Stored User ID:", data.user._id);
+                        console.log("Stored User ID:", data.user._id);
+                        localStorage.setItem("token", data.token);
+                        localStorage.setItem("user", JSON.stringify(data.user));
                          
                         alert("Login successful!");
 
-                        window.location.href = "/dashboard";
+                        if (data.user.role === "admin") {
+                            window.location.href = "/admin/dashboard";
+                        } else {
+                            window.location.href = "/dashboard";
+                        }
                     }
                 } catch (error) {
                     alert(error.response?.data?.message || "Login failed");

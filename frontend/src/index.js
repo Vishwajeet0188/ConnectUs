@@ -25,6 +25,7 @@
   import ExamAnxietyCopingKit from './landingPage/resourcecontent/ExamAnxietyCopingKit';
   import Dashboard from './landingPage/dashboard/Dashboard';
   import { AuthProvider } from "../src/context/AuthContext";
+  import AdminDashboard from './landingPage/admin/AdminDashboard';
 
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -53,6 +54,7 @@
         <Route path='/resumewritting' element={<ResumeWritingMasterclass/>} />
         <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
         <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/admin/dashboard' element={<AdminDashboard/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>

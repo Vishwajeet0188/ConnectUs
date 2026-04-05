@@ -13,6 +13,7 @@ const AuthRoute = require("./routes/AuthRoute");
 const AssesmentRoute = require("./routes/AssesmentRoute");
 const ReviewRoute =require("./routes/ReviewRoute");
 const PostRoute = require("./routes/PostRoute");
+const AdminRoute = require("./routes/adminRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -44,7 +45,7 @@ app.use("/auth", AuthRoute);
 app.use("/assesment",AssesmentRoute);
 app.use("/review",ReviewRoute);
 app.use("/post", PostRoute);
-
+app.use("/admin", AdminRoute);
 // Mongo connection: 
 
 mongoose.connect(url, {
