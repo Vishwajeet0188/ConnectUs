@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { GoogleLogin } from '@react-oauth/google';
 const API = process.env.REACT_APP_API_URL;
 
 function SignupPage() {
@@ -448,6 +448,40 @@ function SignupPage() {
                                         <i className="fas fa-user-plus me-2"></i>
                                         Create Account
                                     </button>
+
+                                    <div className="text-center my-3">
+                                        <p className="text-white opacity-75">OR</p>
+                                        </div>
+
+                                        <GoogleLogin
+                                        onSuccess={async (credentialResponse) => {
+                                            try {
+                                            const res = await axios.post(
+                                                `${API}/auth/google`,
+                                                {
+                                                token: credentialResponse.credential,
+                                                }
+                                            );
+
+                                            // same storage logic
+                                            localStorage.setItem("token", res.data.token);
+                                            localStorage.setItem("user", JSON.stringify(res.data.user));
+                                            localStorage.setItem("isLoggedIn", "true");
+
+                                            // redirect based on role
+                                            if (res.data.user.role === "admin") {
+                                                window.location.href = "/admin/dashboard";
+                                            } else {
+                                                window.location.href = "/dashboard";
+                                            }
+
+                                            } catch (err) {
+                                            console.error(err);
+                                            alert("Google login failed");
+                                            }
+                                        }}
+                                        onError={() => console.log("Google Login Failed")}
+                                    />
 
                                     {/* Login Link */}
                                     <div className="text-center">

@@ -1,6 +1,7 @@
   import React from 'react';
   import ReactDOM from 'react-dom/client';
   import {BrowserRouter, Routes, Route} from 'react-router-dom';
+  import { GoogleOAuthProvider } from '@react-oauth/google';
   import './index.css';
   import Navbar from './landingPage/Navbar';
   import HomePage from './landingPage/home/HomePage';
@@ -30,36 +31,38 @@
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
-    <AuthProvider>
-    <BrowserRouter>
-    <Navbar/>
-      <Routes>
-        <Route path = "/" element={<HomePage/>} />
-        <Route path='/resources' element={<ResourcePage/>} />
-        <Route path='/login' element={<LoginPage/>} />
-        <Route path='/signup' element={<SignupPage/>} />
-        <Route path='/assesment' element={<Assessment/>} />
-        <Route path='/community' element={<CommunityPage/>} />
-        <Route path='/about' element={<AboutPage/>} />
-        <Route path='/sleepcycle' element={<SleepCycle/>} />
-        <Route path='/examstress' element={<ExamStress />} />
-        <Route path='/impostersyndrome' element={<ImposterSyndrome/>} />
-        <Route path='/examanxiety' element={<ExamAnxiety/>} />
-        <Route path='/smartstudy' element={<SmartStudy/>} />
-        <Route path='/sleephygine' element={<SleepHygiene/>} />
-        <Route path='/mindfull' element={<MindFull/>} />
-        <Route path='/timemanagment' element={<TimeManagement/>} />
-        <Route path='/dailymindfullness' element={<DailyMindfulness/>} />
-        <Route path='/activerecall' element={<ActiveRecall/>} />
-        <Route path='/resumewritting' element={<ResumeWritingMasterclass/>} />
-        <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
-        <Route path='/dashboard' element={<Dashboard/>} />
-        <Route path='/admin/dashboard' element={<AdminDashboard/>} />
-        <Route path="*" element={<h1 style={{textAlign:"center"}}>404 - Page Not Found</h1>} />
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
-    </AuthProvider>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+      <AuthProvider>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route path = "/" element={<HomePage/>} />
+          <Route path='/resources' element={<ResourcePage/>} />
+          <Route path='/login' element={<LoginPage/>} />
+          <Route path='/signup' element={<SignupPage/>} />
+          <Route path='/assesment' element={<Assessment/>} />
+          <Route path='/community' element={<CommunityPage/>} />
+          <Route path='/about' element={<AboutPage/>} />
+          <Route path='/sleepcycle' element={<SleepCycle/>} />
+          <Route path='/examstress' element={<ExamStress />} />
+          <Route path='/impostersyndrome' element={<ImposterSyndrome/>} />
+          <Route path='/examanxiety' element={<ExamAnxiety/>} />
+          <Route path='/smartstudy' element={<SmartStudy/>} />
+          <Route path='/sleephygine' element={<SleepHygiene/>} />
+          <Route path='/mindfull' element={<MindFull/>} />
+          <Route path='/timemanagment' element={<TimeManagement/>} />
+          <Route path='/dailymindfullness' element={<DailyMindfulness/>} />
+          <Route path='/activerecall' element={<ActiveRecall/>} />
+          <Route path='/resumewritting' element={<ResumeWritingMasterclass/>} />
+          <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
+          <Route path='/dashboard' element={<Dashboard/>} />
+          <Route path='/admin/dashboard' element={<AdminDashboard/>} />
+          <Route path="*" element={<h1 style={{textAlign:"center"}}>404 - Page Not Found</h1>} />
+        </Routes>
+        <Footer/>
+      </BrowserRouter>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 
   // If you want to start measuring performance in your app, pass a function
