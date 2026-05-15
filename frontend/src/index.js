@@ -27,11 +27,14 @@
   import Dashboard from './landingPage/dashboard/Dashboard';
   import { AuthProvider } from "../src/context/AuthContext";
   import AdminDashboard from './landingPage/admin/AdminDashboard';
- 
+  import Privacy from './landingPage/links/Privacy';
+  import Terms from './landingPage/links/Terms';
+  import Contact from './landingPage/links/Contact';
+  
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
-    <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <AuthProvider>
       <BrowserRouter>
       <Navbar/>
@@ -57,6 +60,9 @@
           <Route path='/examanxietycopingkit' element={<ExamAnxietyCopingKit/>}/>
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/admin/dashboard' element={<AdminDashboard/>} />
+          <Route path='/privacy' element={<Privacy/>} />
+          <Route path='/terms' element={<Terms/>} />
+          <Route path='/contact' element={<Contact/>} />
           <Route path="*" element={<h1 style={{textAlign:"center"}}>404 - Page Not Found</h1>} />
         </Routes>
         <Footer/>

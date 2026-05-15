@@ -99,11 +99,9 @@ function SignupPage() {
                 );
 
                 if (data.success) {
-                    
-                    // store login status
-                    localStorage.setItem("isLoggedIn", "true");
+
                     localStorage.setItem("userName", formData.fullName);
-                    
+
                     setIsSubmitted(true);
 
                     // clear form
@@ -112,7 +110,6 @@ function SignupPage() {
                         email: "",
                         password: "",
                         confirmPassword: "",
-                        // role: "student",
                         agreeTerms: false
                     });
 
@@ -467,6 +464,12 @@ function SignupPage() {
                                             localStorage.setItem("token", res.data.token);
                                             localStorage.setItem("user", JSON.stringify(res.data.user));
                                             localStorage.setItem("isLoggedIn", "true");
+
+                                            localStorage.setItem("userId", res.data.user._id);
+                                            localStorage.setItem("userName", res.data.user.fullName);
+
+                                            const expiryTime = Date.now() + 60 * 60 * 1000;
+                                            localStorage.setItem("loginExpiry", expiryTime);
 
                                             // redirect based on role
                                             if (res.data.user.role === "admin") {

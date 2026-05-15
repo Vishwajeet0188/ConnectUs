@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -14,7 +15,7 @@ function Footer() {
                             <span className="fw-bold fs-4">ConnectUs</span>
                         </div>
                         <p className="text-secondary">
-                            Supporting student wellness on campus and beyond
+                            Supporting student wellness on campus and beyond.
                         </p>
                         <p className="text-secondary small">
                             © 2024 Mental Health Awareness System for Higher Education
@@ -25,10 +26,10 @@ function Footer() {
                     <div className="col-md-4 mb-4">
                         <h5 className="fw-semibold mb-3">Quick Links</h5>
                         <div className="d-flex flex-wrap gap-4 mb-4">
-                            <a href="/about" className="text-secondary text-decoration-none QuickLinks">About</a>
-                            <a href="/privacy" className="text-secondary text-decoration-none QuickLinks">Privacy</a>
-                            <a href="/terms" className="text-secondary text-decoration-none QuickLinks">Terms</a>
-                            <a href="/contact" className="text-secondary text-decoration-none QuickLinks">Contact</a>
+                            <Link to ="/about" className="text-secondary text-decoration-none QuickLinks">About</Link>
+                            <Link to="/privacy" className="text-secondary text-decoration-none QuickLinks">Privacy</Link>
+                            <Link to="/terms" className="text-secondary text-decoration-none QuickLinks">Terms</Link>
+                            <Link to="/contact" className="text-secondary text-decoration-none QuickLinks">Contact</Link>
                         </div>
                         
                         <h5 className="fw-semibold mb-3">Follow Us</h5>
@@ -46,12 +47,12 @@ function Footer() {
                         <div className="bg-white p-4 rounded-3 border">
                             <p className="mb-2">
                                 <span className="fw-bold">Emergency: </span> 
-                                <span className="fw-bold">988</span> 
+                                <span className="fw-bold">9887564253</span> 
                                 <span className="text-secondary ms-2">(24/7)</span>
                             </p>
                             <p className="mb-2">
                                 <span className="fw-bold">Campus:</span> 
-                                <span className="text-secondary ms-2">(555) 123-4567</span>
+                                <span className="text-secondary ms-2">+91 9975678901</span>
                             </p>
                             <p className="mb-0">
                                 <span className="fw-bold">Email:</span> 
