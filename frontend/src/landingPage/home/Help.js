@@ -150,9 +150,9 @@ function Help() {
           </h4>
 
           <div className="bg-light p-4 rounded-3 mb-4">
-            <p className="fs-5 mb-3">🆘 CRISIS HOTLINE: <span className="text-danger fw-bold fs-4">988</span> (24/7)</p>
+            <p className="fs-5 mb-3">🆘 CRISIS HOTLINE: <span className="text-danger fw-bold fs-4">9887564253</span> (24/7)</p>
             <p className="fs-5 mb-3">📱 TEXT: <span className="text-danger fw-bold">HOME</span> to <span className="text-danger fw-bold">741741</span></p>
-            <p className="fs-5 mb-0">🏥 Campus Counseling: <span className="text-danger fw-bold">(555) 123-4567</span></p>
+            <p className="fs-5 mb-0">🏥 Campus Counseling: <span className="text-danger fw-bold">+91 9975678901</span></p>
           </div>
 
           <div className="text-center d-flex justify-content-center gap-3">

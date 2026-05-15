@@ -26,39 +26,66 @@ function Dashboard() {
 
   useEffect(() => {
 
+    const checkExpiry = () => {
+
+      const expiry = localStorage.getItem("loginExpiry");
+
+      if (expiry && Date.now() > Number(expiry)) {
+
+        localStorage.clear();
+
+        alert("Session expired. Please login again.");
+
+        window.location.href = "/login";
+      }
+
+    };
+
+    checkExpiry();
+
+    const interval = setInterval(checkExpiry, 60000);
+
+    return () => clearInterval(interval);
+
+  }, []);
+
+  useEffect(() => {
+
     const fetchAssessments = async () => {
 
       try {
 
         const userId = localStorage.getItem("userId");
 
-        if (!userId) {
-          console.log("UserId not found in localStorage");
+        console.log("Fetched User ID:", userId);
+
+        if (!userId || userId === "undefined" || userId === "null") {
           setLoading(false);
           return;
         }
-
-        console.log("Fetching assessments for user:", userId);
 
         const response = await fetch(
           `http://localhost:8080/assesment/history/${userId}`
         );
 
+        if (!response.ok) {
+          throw new Error("Failed to fetch history");
+        }
+
         const data = await response.json();
 
-        console.log("Assessments from DB:", data);
+        console.log("History Data:", data);
 
         if (!Array.isArray(data)) {
-          setLoading(false);
+          setAssessments([]);
           return;
         }
 
-        // Sort newest first
         const sorted = data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
 
-        const formatted = sorted.map(a => ({
+        const formatted = sorted.map((a) => ({
           date: new Date(a.createdAt).toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
@@ -72,7 +99,7 @@ function Dashboard() {
 
       } catch (error) {
 
-        console.error("Error fetching assessments:", error);
+        console.error("Error fetching history:", error);
 
       } finally {
 
@@ -82,7 +109,11 @@ function Dashboard() {
 
     };
 
-    fetchAssessments();
+    const timer = setTimeout(() => {
+      fetchAssessments();
+    }, 300);
+
+    return () => clearTimeout(timer);
 
   }, []);
 
